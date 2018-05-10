@@ -126,7 +126,7 @@ function actualizarEstudiante(req, res, next) {
   var email = req.body.email;
   var usuario = req.body.usuario;
   var carrera = req.body.carrera;
-  db.any("Select ModificarEstudiante '" + cedula + "','" + nombre + "','" + apellidos + "','" + email + "','" + telefono + "','" + usuario + "','" + carrera + "')")
+  db.any("Select ModificarEstudiante ('" + cedula + "','" + nombre + "','" + apellidos + "','" + email + "','" + telefono + "','" + usuario + "','" + carrera + "')")
     .then(function () {
       res.status(200)
         .json({
@@ -140,13 +140,15 @@ function actualizarEstudiante(req, res, next) {
 }
 
 function actualizarProfesor(req, res, next) {
+
   var cedula = req.body.cedula;
   var nombre = req.body.nombre;
   var apellidos = req.body.apellidos;
   var telefono = parseInt(req.body.telefono);
   var email = req.body.email;
   var usuario = req.body.usuario;
-  db.any("Select ModificarProfesor '" + cedula + "','" + nombre + "','" + apellidos + "','" + email + "','" + telefono + "','" + usuario + "')")
+  console.log("Select ModificarProfesor ('" + cedula + "','" + nombre + "','" + apellidos + "','" + email + "','" + telefono + "','" + usuario + "')");
+  db.any("Select ModificarProfesor ('" + cedula + "','" + nombre + "','" + apellidos + "','" + email + "','" + telefono + "','" + usuario + "')")
     .then(function () {
       res.status(200)
         .json({
@@ -160,8 +162,9 @@ function actualizarProfesor(req, res, next) {
 }
 
 function eliminarEstudiante(req, res, next) {
-  var cedula = req.body.cedula;
-  db.result("SELECT EliminarEstudiante '" + cedula + "')")
+  var cedula = req.params.cedula;
+  console.log(req);
+  db.result("SELECT EliminarEstudiante ('" + cedula + "')")
     .then(function (result) {
       /* jshint ignore:start */
       res.status(200)
@@ -177,8 +180,9 @@ function eliminarEstudiante(req, res, next) {
 }
 
 function eliminarProfesor(req, res, next) {
-  var cedula = req.body.cedula;
-  db.result("SELECT EliminarProfesor '" + cedula + "')")
+  var cedula = req.params.cedula;
+  console.log(req);
+  db.result("SELECT EliminarProfesor ('" + cedula + "')")
     .then(function (result) {
       /* jshint ignore:start */
       res.status(200)

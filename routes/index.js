@@ -16,6 +16,6 @@ router.post('/crearEstudiante', db.crearEstudiante);
 router.post('/crearProfesor', db.crearProfesor);
 router.put('/actualizarEstudiante', db.actualizarEstudiante);
 router.put('/actualizarProfesor', db.actualizarProfesor);
-router.delete('/eliminarEstudiante', db.eliminarEstudiante);
-router.delete('/eliminarProfesor', db.eliminarProfesor);
+router.delete('/eliminarEstudiante/:cedula', db.eliminarEstudiante);
+router.delete('/eliminarProfesor/:cedula', db.eliminarProfesor);
 module.exports = router;
